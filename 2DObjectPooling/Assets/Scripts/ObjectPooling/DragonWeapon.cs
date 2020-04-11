@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class DragonWeapon : MonoBehaviour
 {
-    public GameObject fireballprefab;
-
+    //public GameObject fireballprefab;
+    ObjectPooler objectPooler;
 
     public float bulletSpawnDistance = .5f;
 
     public Vector3 firepoint;
 
+    private void Start()
+    {
+        objectPooler = ObjectPooler.instance;
+    }
 
 
-
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space)
             || Input.GetKeyDown(KeyCode.LeftControl)
@@ -29,6 +32,7 @@ public class DragonWeapon : MonoBehaviour
 
     private void FireBullet(Vector3 position, Quaternion rotation)
     {
-        Instantiate(fireballprefab, position = firepoint, rotation);
+        //Instantiate(fireballprefab, position = firepoint, rotation);
+        objectPooler.SpawnFromPool("Fireball", transform.position, Quaternion.identity);
     }
 }
