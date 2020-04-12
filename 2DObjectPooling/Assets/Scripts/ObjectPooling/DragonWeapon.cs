@@ -4,35 +4,44 @@ using UnityEngine;
 
 public class DragonWeapon : MonoBehaviour
 {
-    //public GameObject fireballprefab;
+
+
+    public float fireDelay = 0.25f;
+    private float cooldownTimer = 0;
+
+
     ObjectPooler objectPooler;
 
-    public float bulletSpawnDistance = .5f;
-
-    public Vector3 firepoint;
+    
+    public Vector3 fireballOffset = new Vector3(0, 0.0f, 0);
+   
 
     private void Start()
     {
         objectPooler = ObjectPooler.instance;
+     
+
     }
 
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space)
-            || Input.GetKeyDown(KeyCode.LeftControl)
-            || Input.GetMouseButtonDown(0))
-        {
-            FireBullet(transform.up
-                        * bulletSpawnDistance
-                        + transform.position,
-                        transform.rotation);
-        }
+        shoot();
     }
 
-    private void FireBullet(Vector3 position, Quaternion rotation)
+   public void shoot()
     {
-        //Instantiate(fireballprefab, position = firepoint, rotation);
-        objectPooler.SpawnFromPool("Fireball", transform.position, Quaternion.identity);
+        cooldownTimer -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer <= 0)
+        {
+            cooldownTimer = fireDelay;
+            Vector3 offset = transform.rotation * fireballOffset;
+            objectPooler.SpawnFromPool("Fireball", transform.position + offset, Quaternion.identity); //shoot fireball
+
+             
+        }
     }
 }
+
+
