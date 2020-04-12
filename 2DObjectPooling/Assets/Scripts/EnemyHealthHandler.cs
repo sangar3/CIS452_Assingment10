@@ -8,12 +8,14 @@ public class EnemyHealthHandler : MonoBehaviour
 {
     public int health = 3;
     public GameObject enemy;
-
+    public AudioClip hurtfx;
+    public GameObject level1text;
     public GameObject level2;
+    public GameObject level2text;
 
 
 
-    
+
 
     void Update()
     {
@@ -30,6 +32,7 @@ public class EnemyHealthHandler : MonoBehaviour
         {
             Debug.Log(" enemyhit by fireball");
             --health;
+            AudioManager.Instance.PlaySFX(hurtfx, 3.0f);
 
         }
     }
@@ -38,7 +41,9 @@ public class EnemyHealthHandler : MonoBehaviour
     {
         Debug.Log(" Enemy 1 dead");
         Destroy(enemy);
+        level1text.SetActive(false);
         level2.SetActive(true);
+        level2text.SetActive(true);
 
     }
 

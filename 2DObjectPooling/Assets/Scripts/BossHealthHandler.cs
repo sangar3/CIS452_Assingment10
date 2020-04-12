@@ -6,7 +6,7 @@ public class BossHealthHandler : MonoBehaviour
 {
     public int health = 3;
     public GameObject enemy;
-
+    public AudioClip hurtfx;
 
 
 
@@ -28,7 +28,7 @@ public class BossHealthHandler : MonoBehaviour
         {
             Debug.Log(" enemyhit by fireball");
             --health;
-
+            AudioManager.Instance.PlaySFX(hurtfx, 3.0f);
         }
     }
 

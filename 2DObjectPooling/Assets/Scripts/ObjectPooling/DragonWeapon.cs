@@ -8,7 +8,7 @@ public class DragonWeapon : MonoBehaviour
 
     public float fireDelay = 0.25f;
     private float cooldownTimer = 0;
-
+    public AudioClip attacksfx;
 
     ObjectPooler objectPooler;
 
@@ -35,11 +35,12 @@ public class DragonWeapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && cooldownTimer <= 0)
         {
+
             cooldownTimer = fireDelay;
             Vector3 offset = transform.rotation * fireballOffset;
             objectPooler.SpawnFromPool("Fireball", transform.position + offset, Quaternion.identity); //shoot fireball
+            AudioManager.Instance.PlaySFX(attacksfx, 3.0f);
 
-             
         }
     }
 }
