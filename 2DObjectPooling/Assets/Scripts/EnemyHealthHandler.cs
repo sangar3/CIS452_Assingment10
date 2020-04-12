@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 
 public class EnemyHealthHandler : MonoBehaviour
@@ -9,6 +9,7 @@ public class EnemyHealthHandler : MonoBehaviour
     public int health = 3;
     public GameObject enemy;
 
+    public GameObject level2;
 
 
 
@@ -18,7 +19,7 @@ public class EnemyHealthHandler : MonoBehaviour
     {
         if( health == 0)
         {
-            EnemyDead();
+            Level1EnemyDead();
 
         }
     }
@@ -33,10 +34,12 @@ public class EnemyHealthHandler : MonoBehaviour
         }
     }
 
-    public void EnemyDead()
+    public void Level1EnemyDead()
     {
-        Debug.Log(" dead");
+        Debug.Log(" Enemy 1 dead");
         Destroy(enemy);
+        level2.SetActive(true);
+
     }
 
 

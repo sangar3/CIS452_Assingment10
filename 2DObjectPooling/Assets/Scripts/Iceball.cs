@@ -7,10 +7,7 @@ public class Iceball : MonoBehaviour
     public Rigidbody2D projectile;
     public float moveSpeed = 10.0f;
 
-    void Start()
-    {
-        projectile = this.gameObject.GetComponent<Rigidbody2D>();
-    }
+  
 
     // Update is called once per frame
     void Update()
